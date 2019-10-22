@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import Control from 'react-leaflet-control';
-import { Button, Row, Col, Modal } from 'react-materialize';
+import { Button, Row, Col, Modal, Card } from 'react-materialize';
 import * as actions from '../actions';
 
 import NewMarker from './NewMarker';
@@ -125,8 +125,17 @@ class Home extends Component {
     const displayMap = this.props.globals.newMarketFromOpen ? 'none' : 'block';
     return (
       <div>
+        <Card
+          style={{position:'absolute',width:'100%',zIndex:'100000', borderRadius: '40px'}}
+          className="blue-grey darken-1"
+          textClassName="white-text"
+        >
+          Nuestra aplicacion esta en desa
+        </Card>
         {this.renderNewMarkerFrom()}
         <Map 
+          maxZoom={19}
+          minZoom={5}
           ref={this.mapRef}
           style={{display: displayMap}}
           center={[this.state.centerLat,this.state.centerLng]}

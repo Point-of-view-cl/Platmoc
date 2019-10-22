@@ -9,6 +9,7 @@
     "leaflet": "^1.5.1",
     "materialize-css": "^1.0.0",
     "moment": "^2.24.0",
+    "multi-select-react": "^0.1.8",
     "rc-time-picker": "^3.7.2",
     "react": "^16.10.2",
     "react-addons-update": "^15.6.2",
