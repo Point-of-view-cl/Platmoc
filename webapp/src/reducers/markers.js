@@ -5,8 +5,8 @@ import { LOAD_MARKERS } from '../actions/types';
 var defaultValues = {
   markers: {
       a0001:{
-        lat: 51.505,
-        lng: -0.09,
+        lat: -32.949715,
+        lng: -71.544152,
         name: 'a'
       },
       a0002:{
@@ -30,7 +30,8 @@ export default function(state = defaultValues , action) {
         }
       });
       console.log(test);
-      return update(state, {markers: {$merge: test}} );;
+      //return update(state, {markers: {$merge: test}} );
+      return state;
     default:
       return state;
   }

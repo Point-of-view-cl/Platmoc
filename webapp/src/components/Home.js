@@ -9,6 +9,8 @@ import NewMarker from './NewMarker';
 import ToolBar from './ToolBar';
 import Filter from './Filter';
 
+import {iconMarket} from '../helpers/iconList';
+
 class Home extends Component {
 
   constructor(props){
@@ -37,6 +39,7 @@ class Home extends Component {
           <Marker 
             key={markerId} 
             position={[markerData.lat, markerData.lng]}
+            icon={iconMarket}
           >
             <Popup autoPan={false}>
               <p><b>{markerData.name}</b></p>
