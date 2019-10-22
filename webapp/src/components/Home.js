@@ -135,7 +135,7 @@ class Home extends Component {
           zoomControl={false}
         >
           <TileLayer
-            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors <-> <font color="#160c28"> Con ♥ por UAI VIÑA</font>'
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors <-> <font color="#160c28"> Con ♥ por Sudo B00yz</font>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {this.renderMarker()}
