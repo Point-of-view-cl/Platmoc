@@ -1,5 +1,6 @@
 import 'materialize-css/dist/js/materialize.min.js'
 import 'materialize-css/dist/css/materialize.min.css';
+import 'react-leaflet-markercluster/dist/styles.min.css'; 
 import './css/customCss.css';
 
 import React from 'react';

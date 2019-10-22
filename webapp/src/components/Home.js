@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import Control from 'react-leaflet-control';
-import { Button, Row, Col, Modal, Card } from 'react-materialize';
+import { Card } from 'react-materialize';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import * as actions from '../actions';
 
 import NewMarker from './NewMarker';
@@ -25,9 +26,16 @@ class Home extends Component {
         lng: -71.528
       }
     }
+    this.centerMap = this.centerMap.bind(this);
   }
 
   mapRef = React.createRef();
+
+  centerMap(lat, lng){
+    this.setState({centerLat: lat, centerLng: lng});
+  }
+
+  // this.centerMap(markerData.lat, markerData.lng)
 
   renderMarker(){
     const items = [];
@@ -43,14 +51,13 @@ class Home extends Component {
           >
             <Popup autoPan={false}>
               <p><b>{markerData.name}</b></p>
-              <p>Cosa 2{markerId}</p>
-              <p>Cosa 3{markerId}</p>
+              <p>Se cierra a las: <b>{markerData.until}</b></p>
             </Popup>
           </Marker>
         );
       });
     }
-    return(<div>{items}</div>);
+    return(<MarkerClusterGroup>{items}</MarkerClusterGroup>);
   }
 
   renderNewMarketIcon(){
@@ -126,11 +133,11 @@ class Home extends Component {
     return (
       <div>
         <Card
-          style={{position:'absolute',width:'100%',zIndex:'100000', borderRadius: '40px'}}
+          style={{position:'absolute',width:'100%',zIndex:'100000', borderRadius: '40px', fontSize: '10px'}}
           className="blue-grey darken-1"
           textClassName="white-text"
         >
-          Nuestra aplicacion esta en desa
+          Estamos trabajando para que mañana miercoles puedas saber dónde abastecerte. Trabajamos sin fines de lucro y confiamos en las personas ♥.
         </Card>
         {this.renderNewMarkerFrom()}
         <Map 
@@ -144,7 +151,7 @@ class Home extends Component {
           zoomControl={false}
         >
           <TileLayer
-            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors <-> <font color="#160c28"> Con ♥ por Sudo B00yz</font>'
+            attribution='&amp;copy OpenStreetMap \m/ <font color="#160c28"> Con ♥ por Sudo B00yz</font>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {this.renderMarker()}
@@ -154,9 +161,11 @@ class Home extends Component {
             <Filter/>
           </Control>
           */}
+          {/*
           <Control position="bottomleft" >
             <ToolBar/>
           </Control>
+          */}
         </Map>
       </div>
     )

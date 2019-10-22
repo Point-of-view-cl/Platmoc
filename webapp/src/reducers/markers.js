@@ -4,6 +4,7 @@ import { LOAD_MARKERS } from '../actions/types';
 
 var defaultValues = {
   markers: {
+    /*
       a0001:{
         lat: -32.949715,
         lng: -71.544152,
@@ -14,6 +15,7 @@ var defaultValues = {
         lng: -0.09,
         name: 'b'
       },
+    */
   }
 }
 
@@ -22,11 +24,12 @@ export default function(state = defaultValues , action) {
     case LOAD_MARKERS:
       let test = {};
       action.payload.markerList.forEach(element => {
-        console.log(element);
+        //console.log(element);
         test[element.location_id] = {
           lat: element.lat,
           lng: element.long,
-          name: element.name
+          name: element.name,
+          until: element.until = 'null' ? 'Estamos averiguando para usted ♥' :  element.until
         }
       });
       //console.log(test);
