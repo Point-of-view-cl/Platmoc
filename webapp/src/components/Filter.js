@@ -6,7 +6,6 @@ class Filter extends Component {
   render() {
     return (
       <div>
-         FILTRO
       </div>
     )
   }

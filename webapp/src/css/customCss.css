@@ -27,13 +27,34 @@ p {
 }
 .input-field{
     width: 100%;
-}
-.react-time-picker__wrapper{
-    border: none !important;
+    padding-left: '0px';
+    scroll-padding-right: '0px';
 }
 .rc-time-picker-panel-input{
     text-align: center !important;
 }
 .rc-time-picker-input{
     text-align: center !important;
+}
+.rc-time-picker{
+    width: 130px;
+}
+.leaflet-popup-close-button{
+    color: #160c28 !important;
+}
+.leaflet-popup-tip{
+    background: #160c28;
+}
+.leaflet-popup-content-wrapper{
+    background: white;
+}
+.row .input-field input:focus {
+    border-bottom: 1px solid #efcb68 !important;
+    box-shadow: 0 1px 0 0 #efcb68 !important
+}
+.input-field input:focus + label {
+    color: #160c28 !important;
+}
+.dropdown-content li>span {
+    color: #160c28;
 }

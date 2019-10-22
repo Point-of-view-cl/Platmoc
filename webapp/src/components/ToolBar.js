@@ -9,15 +9,17 @@ renderToolBar(){
     if(this.props.globals.newMarketShowRefPoint){
       return(
         <div>
-          <Col s={6}>
+          <Col s={4} offset='s2'>
             <Button  
+              style={{backgroundColor: '#aeb7b3', color: '#000411'}}
               onClick={ () => this.props.setNewMarkerRefPointOff() }
             >
               Cancelar
             </Button >
           </Col>
-          <Col s={6}>
-            <Button  
+          <Col s={4}>
+            <Button
+              style={{backgroundColor: '#efcb68', color: '#000411'}}
               onClick={ () => this.props.setNewMarkerFromOpen() }
             >
               Continuar
@@ -27,11 +29,12 @@ renderToolBar(){
       );
     }else{
       return(
-        <Button  
+        <Button
+          style={{backgroundColor: '#efcb68', color: '#000411'}}
           onClick={ () => {
             this.props.setNewMarkerRefPointOn()} }
         >
-          Nuevo punto
+          Agregar local
         </Button >
       );
     }

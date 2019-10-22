@@ -135,14 +135,16 @@ class Home extends Component {
           zoomControl={false}
         >
           <TileLayer
-            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors <-> <font color="#160c28"> Con ♥ por UAI VIÑA</font>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {this.renderMarker()}
           {this.renderNewMarketIcon()}
-          <Control position="topleft" >
+          {/*
+          <Control position="topleft">
             <Filter/>
           </Control>
+          */}
           <Control position="bottomleft" >
             <ToolBar/>
           </Control>
