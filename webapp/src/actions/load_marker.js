@@ -12,19 +12,13 @@ export const loadMarkers = (data, token) => async (dispatch) => {
         let config = {
             headers: { 
                 'Content-Type': 'application/json',
-                'X-Api-Key': process.env.REACT_APP_FIREBASE_API_KEY,
-                //'Access-Control-Allow-Origin': '*'
+                'X-Api-Key': process.env.REACT_APP_FIREBASE_API_KEY
             }
         }
-        console.log('AQUI1');
         const res = await axios.post('https://f5uu7v12oa.execute-api.us-east-1.amazonaws.com/staging/locations/list',body,config);
-
-       // dispatch({ type: LOAD_MARKERS, payload: {markerList: res}});
-        console.log('AQUI2');
-        console.log(res);
+        dispatch({ type: LOAD_MARKERS, payload: {markerList: res.data}});
         return true;
     } catch (err) {
-        console.log('AQUI3');
         console.log(err);
         return false;
     }

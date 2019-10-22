@@ -18,8 +18,16 @@ var defaultValues = {
 export default function(state = defaultValues , action) {
   switch (action.type){
     case LOAD_MARKERS:
-      console.log(action.payload);
-      return state;
+      let test = {};
+      action.payload.markerList.forEach(element => {
+        console.log(element);
+        test[element.location_id] = {
+          lat: element.lat,
+          lng: element.long
+        }
+      });
+      console.log(test);
+      return update(state, {markers: {$merge: test}} );;
     default:
       return state;
   }
