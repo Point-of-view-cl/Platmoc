@@ -29,9 +29,9 @@ export default function(state = defaultValues , action) {
           name: element.name
         }
       });
-      console.log(test);
-      //return update(state, {markers: {$merge: test}} );
-      return state;
+      //console.log(test);
+      return update(state, {markers: {$merge: test}} );
+      //return state;
     default:
       return state;
   }
