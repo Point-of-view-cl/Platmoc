@@ -11,4 +11,15 @@ const iconMarket = new L.Icon({
     iconSize: new L.Point(60, 75),
 });
 
-export { iconMarket };
+const newMarker = new L.Icon({
+    iconUrl: require('../img/newMarker.svg'),
+    iconRetinaUrl: require('../img/newMarker.svg'),
+    iconAnchor: null,
+    popupAnchor: null,
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null,
+    iconSize: new L.Point(60, 75),
+});
+
+export { iconMarket, newMarker };

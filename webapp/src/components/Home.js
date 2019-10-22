@@ -9,7 +9,7 @@ import NewMarker from './NewMarker';
 import ToolBar from './ToolBar';
 import Filter from './Filter';
 
-import {iconMarket} from '../helpers/iconList';
+import {iconMarket, newMarker} from '../helpers/iconList';
 
 class Home extends Component {
 
@@ -58,6 +58,7 @@ class Home extends Component {
       return(
         <Marker 
           position={[this.state.newMarkerIcon.lat, this.state.newMarkerIcon.lng]}
+          icon={newMarker}
         />
       );
     }
@@ -121,12 +122,13 @@ class Home extends Component {
   }
 
   render() {
+    const displayMap = this.props.globals.newMarketFromOpen ? 'none' : 'block';
     return (
       <div>
         {this.renderNewMarkerFrom()}
         <Map 
           ref={this.mapRef}
-          style={{display: this.props.globals.newMarketFromOpen ? 'none' : 'bock'}}
+          style={{display: displayMap}}
           center={[this.state.centerLat,this.state.centerLng]}
           zoom={this.state.zoom}
           onViewportChange={(data) => this.onChangeMapPosition(data)}

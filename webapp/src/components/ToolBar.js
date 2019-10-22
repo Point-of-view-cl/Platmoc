@@ -28,7 +28,8 @@ renderToolBar(){
     }else{
       return(
         <Button  
-          onClick={ () => this.props.setNewMarkerRefPointOn() }
+          onClick={ () => {
+            this.props.setNewMarkerRefPointOn()} }
         >
           Nuevo punto
         </Button >
@@ -39,8 +40,8 @@ renderToolBar(){
   render() {
     return (
       <div>
-          <Row style={{textAlign:'center'}}>
-              <Col s={12}>
+          <Row style={{textAlign:'center', marginBottom: '10px'}}>
+              <Col s={12} style={{paddingTop: '10px', paddingBottom: '10px'}}>
                 {this.renderToolBar()}
               </Col>
             </Row>
