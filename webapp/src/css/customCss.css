@@ -15,12 +15,25 @@ p {
 }
 .leaflet-bottom {
     width: 100%;
-    background-color: cornflowerblue;
+    background-color: #160c28;
 }
 .leaflet-top {
     width: 100%;
-    background-color:cornflowerblue;
+    background-color:#160c28;
 }
 .leaflet-control{
     width: 100%;
+    margin-left: 0px !important;
+}
+.input-field{
+    width: 100%;
+}
+.react-time-picker__wrapper{
+    border: none !important;
+}
+.rc-time-picker-panel-input{
+    text-align: center !important;
+}
+.rc-time-picker-input{
+    text-align: center !important;
 }
