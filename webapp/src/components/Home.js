@@ -16,14 +16,16 @@ class Home extends Component {
     this.state = {
       zoom: 13,
       //TODO: Cambiar a globales
-      centerLat: 51.505,
-      centerLng: -0.09,
+      centerLat: -32.931,
+      centerLng: -71.528,
       newMarkerIcon: {
-        lat: 51.505,
-        lng: -0.09
+        lat: -32.931,
+        lng: -71.528
       }
     }
   }
+
+  mapRef = React.createRef();
 
   renderMarker(){
     const items = [];
@@ -56,13 +58,41 @@ class Home extends Component {
     }
   }
 
+  componentDidMount(){
+    this.props.loadMarkers();
+    let bounds = this.mapRef.current.leafletElement.getBounds();
+    let mapwidh = Math.abs(bounds._northEast.lat - bounds._southWest.lat); //ancho
+    let mapheight = Math.abs(bounds._northEast.lng - bounds._southWest.lng); //alto
+    console.log("Se frist last coord for request");
+    this.setState({
+      lastLatMax: bounds._northEast.lat + mapwidh,
+      lastLatMin: bounds._southWest.lat - mapwidh,
+      lastLngMax: bounds._northEast.lng + mapheight,
+      lastLngMin: bounds._northEast.lng - mapheight
+    });
+  }
+
   onChangeMapPosition(data){
     this.setState({
       newMarkerIcon: {
         lat: data.center[0],
         lng: data.center[1]
       }
-    })
+    });
+    //let bounds = this.mapRef.current.leafletElement.getBounds();
+    //console.log(bounds._northEast.lat); //arriba derecha de la ventana
+    //console.log(bounds._northEast.lng);
+    //console.log(bounds._southWest.lat); //abajo izquierda de la venana
+    //console.log(bounds._southWest.lng);
+    //let mapwidh = Math.abs(bounds._northEast.lat - bounds._southWest.lat); //ancho
+    //let mapheight = Math.abs(bounds._northEast.lng - bounds._southWest.lng); //alto
+    //console.log(mapwidh);
+    //console.log(mapheight);
+    //console.log(bounds._northEast.lat + mapwidh); //limite superior de carga (pared de la derecha)
+    //console.log(bounds._southWest.lat - mapwidh); //lminte inferior de carga (pared de la izquierda)
+    //console.log(bounds._northEast.lng + mapheight); //lminte inferior de carga (techo)
+    //console.log(bounds._northEast.lng - mapheight); //lminte inferior de carga (base)
+
   }
 
   renderNewMarkerFrom(){
@@ -75,12 +105,13 @@ class Home extends Component {
       );
     }
   }
- 
+
   render() {
     return (
       <div>
         {this.renderNewMarkerFrom()}
         <Map 
+          ref={this.mapRef}
           style={{display: this.props.globals.newMarketFromOpen ? 'none' : 'bock'}}
           center={[this.state.centerLat,this.state.centerLng]}
           zoom={this.state.zoom}
@@ -112,4 +143,4 @@ function mapStateToProps(state){
   };
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps,actions)(Home);
