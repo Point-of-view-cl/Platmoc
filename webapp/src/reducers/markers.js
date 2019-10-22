@@ -6,11 +6,13 @@ var defaultValues = {
   markers: {
       a0001:{
         lat: 51.505,
-        lng: -0.09
+        lng: -0.09,
+        name: 'a'
       },
       a0002:{
         lat: 50.505,
-        lng: -0.09
+        lng: -0.09,
+        name: 'b'
       },
   }
 }
@@ -23,7 +25,8 @@ export default function(state = defaultValues , action) {
         console.log(element);
         test[element.location_id] = {
           lat: element.lat,
-          lng: element.long
+          lng: element.long,
+          name: element.name
         }
       });
       console.log(test);

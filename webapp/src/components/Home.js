@@ -38,8 +38,10 @@ class Home extends Component {
             key={markerId} 
             position={[markerData.lat, markerData.lng]}
           >
-            <Popup>
-              Mi ID es: {markerId}
+            <Popup autoPan={false}>
+              <p><b>{markerData.name}</b></p>
+              <p>Cosa 2{markerId}</p>
+              <p>Cosa 3{markerId}</p>
             </Popup>
           </Marker>
         );
@@ -60,6 +62,7 @@ class Home extends Component {
 
   componentDidMount(){
     this.props.loadMarkers();
+    /*
     let bounds = this.mapRef.current.leafletElement.getBounds();
     let mapwidh = Math.abs(bounds._northEast.lat - bounds._southWest.lat); //ancho
     let mapheight = Math.abs(bounds._northEast.lng - bounds._southWest.lng); //alto
@@ -70,6 +73,13 @@ class Home extends Component {
       lastLngMax: bounds._northEast.lng + mapheight,
       lastLngMin: bounds._northEast.lng - mapheight
     });
+    */
+  }
+  componentDidUpdate(prevProps, prevState, snapshot){
+    //console.log(prevProps);
+    //console.log(prevState);
+    //console.log(snapshot);
+    return true;
   }
 
   onChangeMapPosition(data){
@@ -79,6 +89,7 @@ class Home extends Component {
         lng: data.center[1]
       }
     });
+    
     //let bounds = this.mapRef.current.leafletElement.getBounds();
     //console.log(bounds._northEast.lat); //arriba derecha de la ventana
     //console.log(bounds._northEast.lng);
