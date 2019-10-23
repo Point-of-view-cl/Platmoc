@@ -16,6 +16,7 @@
     "react": "^16.10.2",
     "react-addons-update": "^15.6.2",
     "react-dom": "^16.10.2",
+    "react-geolocated": "^3.0.1",
     "react-leaflet": "^2.5.0",
     "react-leaflet-control": "^2.1.1",
     "react-leaflet-markercluster": "^2.0.0-rc3",

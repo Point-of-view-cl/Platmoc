@@ -9,6 +9,7 @@ import * as actions from '../actions';
 import NewMarker from './NewMarker';
 import ToolBar from './ToolBar';
 import Filter from './Filter';
+import Geo from '../helpers/geo';
 
 import {iconMarket, newMarker} from '../helpers/iconList';
 
@@ -85,6 +86,22 @@ class Home extends Component {
       lastLngMin: bounds._northEast.lng - mapheight
     });
     */
+    var options = {
+      enableHighAccuracy: true,
+      maximumAge: 0
+    };
+    navigator.geolocation.getCurrentPosition((poss) =>{
+      let lat = poss.coords.latitude;
+      let lng = poss.coords.longitude;
+      if(typeof(lat) !== 'undefined' && typeof(lng) !== 'undefined'){
+        console.log(lat);
+        console.log(lng);
+        this.setState({
+          centerLat: lat,
+          centerLng: lng,
+        });
+      }
+    },null,options);
   }
   componentDidUpdate(prevProps, prevState, snapshot){
     //console.log(prevProps);
