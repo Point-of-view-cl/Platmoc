@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 import Control from 'react-leaflet-control';
-import { Card } from 'react-materialize';
+import { Card, Button } from 'react-materialize';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import * as actions from '../actions';
 
 import NewMarker from './NewMarker';
 import ToolBar from './ToolBar';
 import Filter from './Filter';
+import EditMarker from './EditMarker';
 
 import {iconMarket, newMarker} from '../helpers/iconList';
 
@@ -34,6 +35,17 @@ class Home extends Component {
       Object.entries(this.props.markers).forEach(function(data) {
         const markerId = data[0];
         const markerData = data[1];
+        const editButton = (
+          <p>
+            <Button
+              style={{backgroundColor: '#efcb68', color: '#000411'}}
+              onClick={ () => this.props.setEditMarkerFromOpen({id: markerId, name: markerData.name, until:this.props.markerDetail.markerDetail.until , queue_level:this.props.markerDetail.markerDetail.queue_level , products: this.props.markerDetail.markerDetail.products}) }
+              disabled={this.props.markerDetail.ready ? false : true}
+            >
+              Actualizar información
+            </Button >
+          </p>
+        );
         items.push(
           <Marker 
             key={markerId} 
@@ -41,15 +53,17 @@ class Home extends Component {
             icon={iconMarket}
             onClick={() => {
               if(markerData.marker_type==1){
+                this.props.unLoadMarkerDetail();
                 this.props.getMarketDetail({id: markerId});
               }
             }}
           >
             <Popup autoPan={false}>
-              <p><b>{markerData.name}</b></p>
+              <p style={{fontSize:'18px'}}><b>{markerData.name}</b></p>
               <p><b>Nivel de cola:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.queue_level : 'Cargando') : 'Estamos averiguando para usted ♥'}</p>
               <p><b>Puedes encontrar:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.products.join(', ') : 'Cargando') : 'Estamos averiguando para usted ♥'}</p>
               <p><b>Hora de cierre:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.until : 'Cargando') : markerData.until}</p>
+              {markerData.marker_type == 1 ? editButton: <div></div>}
             </Popup>
           </Marker>
         );
@@ -93,13 +107,13 @@ class Home extends Component {
         let lat = poss.coords.latitude;
         let lng = poss.coords.longitude;
         if(typeof(lat) !== 'undefined' && typeof(lng) !== 'undefined'){
-          this.props.setNewCerterMap({lat,lng});
           this.setState({
             newMarkerIcon: {
               lat: lat,
               lng: lng
-            }
+            },
           });
+          this.props.setNewCerterMap({lat,lng});
         }
       },null,options);
       this.props.setFristMapCenterReady();
@@ -144,6 +158,14 @@ class Home extends Component {
     }
   }
 
+  renderEditMarkerFrom(){
+    if(this.props.globals.editMarketFromOpen){
+      return(
+        <EditMarker/>
+      );
+    }
+  }
+
   //TODO: OJO NOMBRE
   updateCenderMap(){
     var options = {
@@ -162,17 +184,18 @@ class Home extends Component {
   }
 
   render() {
-    const displayMap = this.props.globals.newMarketFromOpen ? 'none' : 'block';
+    const displayMap = this.props.globals.newMarketFromOpen ? 'none' : 'block' && this.props.globals.editMarketFromOpen ? 'none' : 'block';
     return (
       <div>
         <Card
-          style={{display:displayMap, position:'absolute',width:'100%',zIndex:'100000', borderRadius: '40px', fontSize: '10px'}}
+          style={{display:displayMap, position:'absolute',width:'100%',zIndex:'100000', borderRadius: '40px', fontSize: '12px', textAlign:'center'}}
           className="blue-grey darken-1"
           textClassName="white-text"
         >
-          Disculpas las molestias si no está funcionando perfectamente, seguimos desarrollando. Trabajamos sin fines de lucro y confiamos en las personas ♥. (Este mensaje fue escrito a las 5AM)
+          Luego de 24 Horas seguimos trabajando! Cualquier Feedback mandanos un mensaje por <b><a href="https://www.instagram.com/abastecete.chile/">Instagram</a></b>.
         </Card>
         {this.renderNewMarkerFrom()}
+        {this.renderEditMarkerFrom()}
         <Map 
           maxZoom={19}
           minZoom={5}

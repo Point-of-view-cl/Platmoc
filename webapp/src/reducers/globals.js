@@ -6,6 +6,7 @@ var defaultValues = {
     newMarketShowRefPoint: false,
     newMarketFromOpen: false,
     fristMapCenter: false,
+    editMarketFromOpen:false,
     latCenterMap: -33.317,
     lngCenterMap: -71.103
 }
@@ -13,7 +14,6 @@ var defaultValues = {
 export default function(state = defaultValues , action) {
   switch (action.type){
     case SET_GLOBAL_CONFIG:
-      console.log(action.payload);
       return update(state, {$merge: action.payload} );
     default:
       return state;
