@@ -107,14 +107,13 @@ class Home extends Component {
         let lat = poss.coords.latitude;
         let lng = poss.coords.longitude;
         if(typeof(lat) !== 'undefined' && typeof(lng) !== 'undefined'){
-          this.props.setNewCerterMap({lat,lng});
           this.setState({
             newMarkerIcon: {
               lat: lat,
               lng: lng
             },
-            zoom: 12,
           });
+          this.props.setNewCerterMap({lat,lng});
         }
       },null,options);
       this.props.setFristMapCenterReady();
