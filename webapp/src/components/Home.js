@@ -42,7 +42,7 @@ class Home extends Component {
               onClick={ () => this.props.setEditMarkerFromOpen({id: markerId, name: markerData.name, until:this.props.markerDetail.markerDetail.until , queue_level:this.props.markerDetail.markerDetail.queue_level , products: this.props.markerDetail.markerDetail.products}) }
               disabled={this.props.markerDetail.ready ? false : true}
             >
-              Dar mi opinion
+              Actualizar información
             </Button >
           </p>
         );
@@ -112,7 +112,8 @@ class Home extends Component {
             newMarkerIcon: {
               lat: lat,
               lng: lng
-            }
+            },
+            //zoom: 10,
           });
         }
       },null,options);

@@ -153,7 +153,7 @@ class EditMarker extends Component {
               style={{backgroundColor: '#efcb68', color: '#000411'}}
               onClick={ () => this.onEditMarker()}
             >
-              Editar información
+              Confirmar
             </Button >
           </Col>
           <Col s={12}  style={{textAlign:'center'}}>
