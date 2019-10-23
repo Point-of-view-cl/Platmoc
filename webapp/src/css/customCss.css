@@ -59,3 +59,8 @@ p {
 .dropdown-content li>span {
     color: #160c28;
 }
+.leaflet-bar{
+    position: absolute !important;
+    z-index: 1000;
+    width: 35px;
+}
