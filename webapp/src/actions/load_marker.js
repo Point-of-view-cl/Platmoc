@@ -14,10 +14,10 @@ export const loadStaticMarkers = () => async (dispatch) => {
         let config = {
             headers: { 
                 'Content-Type': 'application/json',
-                'X-Api-Key': process.env.REACT_APP_FIREBASE_API_KEY
+                'X-Api-Key': process.env.REACT_APP_API_KEY
             }
         }
-        const res = await axios.post('https://f5uu7v12oa.execute-api.us-east-1.amazonaws.com/staging/locations/list',body,config);
+        const res = await axios.post(process.env.REACT_APP_BASE_URL+'/locations/list',body,config);
         dispatch({ type: LOAD_STATIC_MARKERS, payload: {markerList: res.data}});
         return true;
     } catch (err) {
@@ -32,10 +32,10 @@ export const loadMarkers = () => async (dispatch) => {
         let config = {
             headers: { 
                 'Content-Type': 'application/json',
-                'X-Api-Key': process.env.REACT_APP_API_KEY_DEV
+                'X-Api-Key': process.env.REACT_APP_API_KEY
             }
         }
-        const res = await axios.post('https://f5uu7v12oa.execute-api.us-east-1.amazonaws.com/pre-staging/markers/list',body,config);
+        const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers/list',body,config);
         dispatch({ type: LOAD_MARKERS, payload: {markerList: res.data}});
         return true;
     } catch (err) {
@@ -51,10 +51,10 @@ export const getMarketDetail = (data) => async (dispatch) => {
         let config = {
             headers: { 
                 'Content-Type': 'application/json',
-                'X-Api-Key': process.env.REACT_APP_API_KEY_DEV
+                'X-Api-Key': process.env.REACT_APP_API_KEY
             }
         }
-        const res = await axios.post('https://f5uu7v12oa.execute-api.us-east-1.amazonaws.com/pre-staging/markers/info',body,config);
+        const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers/info',body,config);
         //console.log(res.data[0].products);
         let products = [];
         res.data[0].products.forEach(element => {
@@ -108,11 +108,11 @@ export const newMarker = (data) => async (dispatch) => {
         let config = {
             headers: { 
                 'Content-Type': 'application/json',
-                'X-Api-Key': process.env.REACT_APP_API_KEY_DEV
+                'X-Api-Key': process.env.REACT_APP_API_KEY
             }
         }
         console.log(body);
-        const res = await axios.post('https://f5uu7v12oa.execute-api.us-east-1.amazonaws.com/pre-staging/markers',body,config);
+        const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers',body,config);
         return true;
     } catch (err) {
         console.log(err);
