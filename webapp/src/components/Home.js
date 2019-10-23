@@ -9,7 +9,6 @@ import * as actions from '../actions';
 import NewMarker from './NewMarker';
 import ToolBar from './ToolBar';
 import Filter from './Filter';
-import Geo from '../helpers/geo';
 
 import {iconMarket, newMarker} from '../helpers/iconList';
 
