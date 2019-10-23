@@ -113,7 +113,7 @@ class Home extends Component {
               lat: lat,
               lng: lng
             },
-            //zoom: 10,
+            zoom: 12,
           });
         }
       },null,options);
@@ -189,11 +189,11 @@ class Home extends Component {
     return (
       <div>
         <Card
-          style={{display:displayMap, position:'absolute',width:'100%',zIndex:'100000', borderRadius: '40px', fontSize: '10px'}}
+          style={{display:displayMap, position:'absolute',width:'100%',zIndex:'100000', borderRadius: '40px', fontSize: '12px', textAlign:'center'}}
           className="blue-grey darken-1"
           textClassName="white-text"
         >
-          Disculpas las molestias si no está funcionando perfectamente, seguimos desarrollando. Trabajamos sin fines de lucro y confiamos en las personas ♥. (Este mensaje fue escrito a las 5AM)
+          Luego de 24 Horas seguimos trabajando! Cualquier Feedback mandanos un mensaje por <b><a href="https://www.instagram.com/abastecete.chile/">Instagram</a></b>.
         </Card>
         {this.renderNewMarkerFrom()}
         {this.renderEditMarkerFrom()}
