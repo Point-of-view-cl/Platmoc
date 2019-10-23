@@ -165,15 +165,13 @@ class Home extends Component {
     const displayMap = this.props.globals.newMarketFromOpen ? 'none' : 'block';
     return (
       <div>
-        {/*
         <Card
-          style={{position:'absolute',width:'100%',zIndex:'100000', borderRadius: '40px', fontSize: '10px'}}
+          style={{display:displayMap, position:'absolute',width:'100%',zIndex:'100000', borderRadius: '40px', fontSize: '10px'}}
           className="blue-grey darken-1"
           textClassName="white-text"
         >
-          Estamos trabajando para que mañana miércoles puedas saber dónde abastecerte. Trabajamos sin fines de lucro y confiamos en las personas ♥.
+          Disculpas las molestias si no está funcionando perfectamente, seguimos desarrollando. Trabajamos sin fines de lucro y confiamos en las personas ♥. (Este mensaje fue escrito a las 5AM)
         </Card>
-        */}
         {this.renderNewMarkerFrom()}
         <Map 
           maxZoom={19}
