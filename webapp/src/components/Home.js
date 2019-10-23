@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 import Control from 'react-leaflet-control';
 import { Card } from 'react-materialize';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
@@ -17,7 +17,7 @@ class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
-      zoom: 14,
+      zoom: 8,
       newMarkerIcon: {
         lat: -33.019,
         lng: -71.550
@@ -189,7 +189,7 @@ class Home extends Component {
           />
           {this.renderMarker()}
           {this.renderNewMarketIcon()}
-          
+
           <Control position="topleft">
             <Filter updateCenderMap={this.updateCenderMap}/>
           </Control>
@@ -197,6 +197,8 @@ class Home extends Component {
           <Control position="bottomleft" >
             <ToolBar/>
           </Control>
+
+          <ZoomControl position={"bottomleft"}/>
 
         </Map>
       </div>

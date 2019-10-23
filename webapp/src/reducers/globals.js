@@ -6,8 +6,8 @@ var defaultValues = {
     newMarketShowRefPoint: false,
     newMarketFromOpen: false,
     fristMapCenter: false,
-    latCenterMap: -33.019,
-    lngCenterMap: -71.550
+    latCenterMap: -33.317,
+    lngCenterMap: -71.103
 }
 
 export default function(state = defaultValues , action) {
