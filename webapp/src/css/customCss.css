@@ -64,3 +64,7 @@ p {
     z-index: 1000;
     width: 35px;
 }
+.card-content{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}

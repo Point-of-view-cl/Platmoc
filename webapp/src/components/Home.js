@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 import Control from 'react-leaflet-control';
-import { Card, Button } from 'react-materialize';
+import { Card, Button, Col } from 'react-materialize';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import * as actions from '../actions';
 
@@ -12,6 +12,7 @@ import Filter from './Filter';
 import EditMarker from './EditMarker';
 
 import {iconMarket, newMarker} from '../helpers/iconList';
+import Row from 'react-materialize/lib/Row';
 
 class Home extends Component {
 
@@ -22,9 +23,12 @@ class Home extends Component {
       newMarkerIcon: {
         lat: -33.019,
         lng: -71.550
+      },
+      centerMap:{
+        lat: -33.317,
+        lng: -71.103
       }
     }
-    this.updateCenderMap = this.updateCenderMap.bind(this);
   }
 
   mapRef = React.createRef();
@@ -98,11 +102,14 @@ class Home extends Component {
       lastLngMin: bounds._northEast.lng - mapheight
     });
     */
+  }
+
+  onClickCenterMap(){
     var options = {
       enableHighAccuracy: true,
       maximumAge: 0
     };
-    if(!this.props.globals.fristMapCenter){
+    //if(!this.props.globals.fristMapCenter){
       navigator.geolocation.getCurrentPosition((poss) =>{
         let lat = poss.coords.latitude;
         let lng = poss.coords.longitude;
@@ -112,15 +119,15 @@ class Home extends Component {
               lat: lat,
               lng: lng
             },
+            centerMap:{
+              lat: lat,
+              lng: lng
+            },
+            zoom: 12
           });
-          this.props.setNewCerterMap({lat,lng});
         }
       },null,options);
-      this.props.setFristMapCenterReady();
-    }
-  }
-  componentDidUpdate(prevProps, prevState, snapshot){
-    return true;
+    //}
   }
 
   onChangeMapPosition(data){
@@ -128,9 +135,13 @@ class Home extends Component {
       newMarkerIcon: {
         lat: data.center[0],
         lng: data.center[1]
-      }
+      },
+      centerMap:{
+        lat: data.center[0],
+        lng: data.center[1]
+      },
+      zoom: data.zoom
     });
-    
     //let bounds = this.mapRef.current.leafletElement.getBounds();
     //console.log(bounds._northEast.lat); //arriba derecha de la ventana
     //console.log(bounds._northEast.lng);
@@ -167,6 +178,7 @@ class Home extends Component {
   }
 
   //TODO: OJO NOMBRE
+  /*
   updateCenderMap(){
     var options = {
       enableHighAccuracy: true,
@@ -182,17 +194,38 @@ class Home extends Component {
       }
     },null,options);
   }
+  */
 
   render() {
     const displayMap = this.props.globals.newMarketFromOpen ? 'none' : 'block' && this.props.globals.editMarketFromOpen ? 'none' : 'block';
     return (
       <div>
         <Card
-          style={{display:displayMap, position:'absolute',width:'100%',zIndex:'100000', borderRadius: '40px', fontSize: '12px', textAlign:'center'}}
+          style={{
+            display:displayMap,
+            position:'absolute',
+            width:'100%',
+            zIndex:'100000',
+            borderRadius: '40px',
+            fontSize: '12px',
+            textAlign:'center'
+          }}
           className="blue-grey darken-1"
           textClassName="white-text"
         >
-          Luego de 24 Horas seguimos trabajando! Cualquier Feedback mandanos un mensaje por <b><a href="https://www.instagram.com/abastecete.chile/">Instagram</a></b>.
+          <Row style={{marginBottom:'0px'}}>
+            <Col s={8}>
+              Luego de 24 Horas seguimos trabajando! Cualquier Feedback mandanos un mensaje por <b><a href="https://www.instagram.com/abastecete.chile/">Instagram</a></b>.
+            </Col>
+            <Col s={4}>
+              <Button
+                onClick={ () => this.onClickCenterMap() }
+                style={{marginTop: "16px", backgroundColor:'#aeb7b3'}}
+              >
+                <i class="material-icons" style={{fontSize:"25px", color:"black"}}>my_location</i>
+              </Button >
+            </Col>
+          </Row>
         </Card>
         {this.renderNewMarkerFrom()}
         {this.renderEditMarkerFrom()}
@@ -201,7 +234,7 @@ class Home extends Component {
           minZoom={5}
           ref={this.mapRef}
           style={{display: displayMap}}
-          center={[this.props.globals.latCenterMap,this.props.globals.lngCenterMap]}
+          center={[this.state.centerMap.lat,this.state.centerMap.lng]}
           zoom={this.state.zoom}
           onViewportChange={(data) => this.onChangeMapPosition(data)}
           zoomControl={false}
@@ -213,9 +246,11 @@ class Home extends Component {
           {this.renderMarker()}
           {this.renderNewMarketIcon()}
 
+          {/*
           <Control position="topleft">
             <Filter updateCenderMap={this.updateCenderMap}/>
           </Control>
+          */}
 
           <Control position="bottomleft" >
             <ToolBar/>

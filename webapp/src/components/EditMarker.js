@@ -20,7 +20,8 @@ class EditMarker extends Component {
             {value: false, label: "Nada", id: 1, level: 1},
             {value: false, label: "Poco", id: 2, level: 2},
             {value: false, label: "Algo", id: 3, level: 3},
-            {value: false, label: "Mucho", id: 4, level: 4}
+            {value: false, label: "Mucho", id: 4, level: 4},
+            {value: false, label: "No ir, está cerrado", id: 5, level: 5}
         ],
         selectProducto: [
             {value: false, label: "Abarrotes", id: 1},
@@ -28,6 +29,7 @@ class EditMarker extends Component {
             {value: false, label: "Bebestibles", id: 3},
             {value: false, label: "Medicamentos", id: 4},
             {value: false, label: "Otros", id: 5},
+            {value: false, label: "No ir, no hay nada", id: 6, level: 6}
         ],
         error: false,
         showAviso: false,

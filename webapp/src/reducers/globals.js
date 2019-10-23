@@ -5,10 +5,7 @@ import { SET_GLOBAL_CONFIG } from '../actions/types';
 var defaultValues = {
     newMarketShowRefPoint: false,
     newMarketFromOpen: false,
-    fristMapCenter: false,
     editMarketFromOpen:false,
-    latCenterMap: -33.317,
-    lngCenterMap: -71.103
 }
 
 export default function(state = defaultValues , action) {
