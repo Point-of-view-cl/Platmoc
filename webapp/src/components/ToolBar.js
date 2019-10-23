@@ -9,7 +9,7 @@ renderToolBar(){
     if(this.props.globals.newMarketShowRefPoint){
       return(
         <div>
-          <Col s={4} offset='s2'>
+          <Col s={5} offset='s1'>
             <Button  
               style={{backgroundColor: '#aeb7b3', color: '#000411'}}
               onClick={ () => this.props.setNewMarkerRefPointOff() }
@@ -29,13 +29,15 @@ renderToolBar(){
       );
     }else{
       return(
-        <Button
-          style={{backgroundColor: '#efcb68', color: '#000411'}}
-          onClick={ () => {
-            this.props.setNewMarkerRefPointOn()} }
-        >
-          Agregar local
-        </Button >
+        <div>
+          <Button
+              style={{backgroundColor: '#efcb68', color: '#000411'}}
+              onClick={ () => {
+                this.props.setNewMarkerRefPointOn()} }
+            >
+              Agregar local
+            </Button >
+        </div>
       );
     }
   }
@@ -43,11 +45,11 @@ renderToolBar(){
   render() {
     return (
       <div>
-          <Row style={{textAlign:'center', marginBottom: '10px'}}>
-              <Col s={12} style={{paddingTop: '10px', paddingBottom: '10px'}}>
-                {this.renderToolBar()}
-              </Col>
-            </Row>
+        <Row style={{textAlign:'center', marginBottom: '10px'}}>
+          <Col s={12} style={{paddingTop: '10px', paddingBottom: '10px'}}>
+            {this.renderToolBar()}
+          </Col>
+        </Row>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 
-import { LOAD_MARKERS } from '../actions/types';
+import { LOAD_STATIC_MARKERS, LOAD_MARKERS } from '../actions/types';
 
 var defaultValues = {
   markers: {
@@ -21,8 +21,9 @@ var defaultValues = {
 
 export default function(state = defaultValues , action) {
   switch (action.type){
-    case LOAD_MARKERS:
-      let test = {};
+    case LOAD_STATIC_MARKERS:
+      let statics = {};
+      //TODO: Sacar esto de aqui
       action.payload.markerList.forEach(element => {
         let untilAux;
         if(element.until == 'null'){
@@ -30,16 +31,29 @@ export default function(state = defaultValues , action) {
         }else{
           untilAux = element.until;
         }
-        test[element.location_id] = {
+        statics[element.location_id] = {
           lat: element.lat,
           lng: element.long,
           name: element.name,
-          until: untilAux
+          until: untilAux,
+          marker_type: -1,
+        }
+      });
+      return update(state, {markers: {$merge: statics}} );
+    case LOAD_MARKERS:
+      let test = {};
+      //console.log(action.payload.markerList);
+      action.payload.markerList.forEach(element => {
+        test[element.marker_id] = {
+          lat: element.lat,
+          lng: element.long,
+          name: element.name,
+          until: 'none',
+          marker_type: element.marker_type,
         }
       });
       //console.log(test);
       return update(state, {markers: {$merge: test}} );
-      //return state;
     default:
       return state;
   }
