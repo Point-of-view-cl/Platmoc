@@ -17,13 +17,13 @@ class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
-      zoom: 13,
+      zoom: 14,
       //TODO: Cambiar a globales
-      centerLat: -32.931,
-      centerLng: -71.528,
+      centerLat: -33.019,
+      centerLng: -71.550,
       newMarkerIcon: {
-        lat: -32.931,
-        lng: -71.528
+        lat: -33.019,
+        lng: -71.550
       }
     }
     this.centerMap = this.centerMap.bind(this);
@@ -137,7 +137,7 @@ class Home extends Component {
           className="blue-grey darken-1"
           textClassName="white-text"
         >
-          Estamos trabajando para que mañana miercoles puedas saber dónde abastecerte. Trabajamos sin fines de lucro y confiamos en las personas ♥.
+          Estamos trabajando para que mañana miércoles puedas saber dónde abastecerte. Trabajamos sin fines de lucro y confiamos en las personas ♥.
         </Card>
         {this.renderNewMarkerFrom()}
         <Map 

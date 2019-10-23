@@ -24,12 +24,17 @@ export default function(state = defaultValues , action) {
     case LOAD_MARKERS:
       let test = {};
       action.payload.markerList.forEach(element => {
-        //console.log(element);
+        let untilAux;
+        if(element.until == 'null'){
+          untilAux = 'Estamos averiguando para usted ♥';
+        }else{
+          untilAux = element.until;
+        }
         test[element.location_id] = {
           lat: element.lat,
           lng: element.long,
           name: element.name,
-          until: element.until = 'null' ? 'Estamos averiguando para usted ♥' :  element.until
+          until: untilAux
         }
       });
       //console.log(test);
