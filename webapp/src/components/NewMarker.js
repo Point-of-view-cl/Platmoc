@@ -202,7 +202,7 @@ class NewMarker extends Component {
               isSingleSelect={true}
             />
           </Col>
-          <Col s={10} offset='s1' style={{textAlign:'center', paddingBottom: '100px'}}>
+          <Col s={10} offset='s1' style={{textAlign:'center', paddingBottom: '60px'}}>
             <p style={{marginBottom: '5px'}}>¿Qué encontraste en este lugar?</p>
             <MultiSelectReact 
               options={this.state.selectProducto}
@@ -223,7 +223,7 @@ class NewMarker extends Component {
   render() {
     return (
       <div>
-        <Row style={{width:'100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)'}}>
+        <Row style={{width:'100%', position: 'absolute'}}>
           <Col s={8} offset='s2' style={{textAlign:'center', paddingBottom: '10px',  paddingTop: '10px', background: '#160c28', color:'#e1efe6', borderRadius:'25px'}}>
             <b>Ayúdanos a recolectar algo de información :)</b>
           </Col>
