@@ -23,9 +23,11 @@ class NewMarker extends Component {
         {value: false, label: "Mucho", id: 4, level: 4}
       ],
       selectProducto: [
-        {value: false, label: "Bencian", id: 1},
-        {value: false, label: "Abarrote", id: 2},
-        {value: false, label: "Medicamentos", id: 3}
+        {value: false, label: "Abarrotes", id: 1},
+        {value: false, label: "Alimentos", id: 2},
+        {value: false, label: "Bebestibles", id: 3},
+        {value: false, label: "Medicamentos", id: 4},
+        {value: false, label: "Otros", id: 4},
       ],
       error: false,
       showAviso: false,
@@ -134,7 +136,7 @@ class NewMarker extends Component {
       return(
         <div>
           <Col s={12} style={{textAlign:'center', paddingBottom: '10px'}}>
-            <div style={{paddingBottom: '10px', paddingTop:'50px'}}><b>Estamos procesando !... 5 segundo porfa :)</b></div>
+            <div style={{paddingBottom: '10px', paddingTop:'50px'}}><b>Estamos procesando!... 5 segundos porfa :)</b></div>
           </Col>
         </div>
       );
