@@ -125,7 +125,7 @@ class NewMarker extends Component {
             <div style={{paddingBottom: '10px', paddingTop:'50px'}}><b>Gracias!, luego que revisemos tu aporte, lo compartiremos con todo Chile! </b></div>
             <Button  
               style={{backgroundColor: '#efcb68', color: '#000411'}}
-              onClick={ () => {this.props.setNewMarkerFromClose(); this.props.setNewMarkerRefPointOff();}}
+              onClick={ () => {this.props.setNewMarkerFromClose(); this.props.setNewMarkerRefPointOff(); window.location.reload(false);}}
             >
               Ya !
             </Button >
@@ -223,7 +223,7 @@ class NewMarker extends Component {
   render() {
     return (
       <div>
-        <Row style={{width:'100%', position: 'absolute'}}>
+        <Row style={{width:'100%', position: 'absolute', paddingTop:'10px'}}>
           <Col s={8} offset='s2' style={{textAlign:'center', paddingBottom: '10px',  paddingTop: '10px', background: '#160c28', color:'#e1efe6', borderRadius:'25px'}}>
             <b>Ayúdanos a recolectar algo de información :)</b>
           </Col>

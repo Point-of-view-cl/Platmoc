@@ -30,7 +30,7 @@ class Home extends Component {
 
   renderMarker(){
     const items = [];
-    if(!this.props.globals.newMarketShowRefPoint){
+    //if(!this.props.globals.newMarketShowRefPoint){
       Object.entries(this.props.markers).forEach(function(data) {
         const markerId = data[0];
         const markerData = data[1];
@@ -54,7 +54,7 @@ class Home extends Component {
           </Marker>
         );
       },this);
-    }
+    //}
     return(<MarkerClusterGroup>{items}</MarkerClusterGroup>);
   }
 
