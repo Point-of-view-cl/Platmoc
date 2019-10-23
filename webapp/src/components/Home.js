@@ -94,6 +94,12 @@ class Home extends Component {
         let lng = poss.coords.longitude;
         if(typeof(lat) !== 'undefined' && typeof(lng) !== 'undefined'){
           this.props.setNewCerterMap({lat,lng});
+          this.setState({
+            newMarkerIcon: {
+              lat: lat,
+              lng: lng
+            }
+          });
         }
       },null,options);
       this.props.setFristMapCenterReady();
