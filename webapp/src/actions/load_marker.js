@@ -3,7 +3,8 @@ import axios from 'axios';
 import {
     LOAD_STATIC_MARKERS,
     LOAD_MARKERS,
-    LOAD_MARKER_DETAIL
+    LOAD_MARKER_DETAIL,
+    UNLOAD_MARKER_DETAIL
 } from './types';
 
 require('dotenv').config();
@@ -92,6 +93,10 @@ export const getMarketDetail = (data) => async (dispatch) => {
         console.log(err);
         return false;
     }
+};
+
+export const unLoadMarkerDetail = () => dispatch => {
+    dispatch({ type: UNLOAD_MARKER_DETAIL, payload:null});
 };
 
 export const newMarker = (data) => async (dispatch) => {

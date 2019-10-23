@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 
-import { LOAD_MARKER_DETAIL } from '../actions/types';
+import { LOAD_MARKER_DETAIL, UNLOAD_MARKER_DETAIL } from '../actions/types';
 
 var defaultValues = {
   markerDetail: {
@@ -14,8 +14,9 @@ var defaultValues = {
 export default function(state = defaultValues , action) {
   switch (action.type){
     case LOAD_MARKER_DETAIL:
-        //return state; 
         return update(state, {$set: action.payload});
+    case UNLOAD_MARKER_DETAIL:
+        return update(state, {ready: {$set: false}});
     default:
         return state;
   }
