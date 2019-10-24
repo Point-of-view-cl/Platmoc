@@ -74,7 +74,15 @@ class Home extends Component {
         );
       },this);
     //}
-    return(<MarkerClusterGroup>{items}</MarkerClusterGroup>);
+    return(
+      <MarkerClusterGroup 
+        disableClusteringAtZoom={18} 
+        spiderfyDistanceMultiplier={5}
+        spiderfyOnMaxZoom={false} 
+      >
+      {items}
+      </MarkerClusterGroup>
+    );
   }
 
   renderNewMarketIcon(){
