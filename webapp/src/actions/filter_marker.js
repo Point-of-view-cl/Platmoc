@@ -16,7 +16,7 @@ export const productFilter = (data) => async (dispatch) => {
                 'X-Api-Key': process.env.REACT_APP_API_KEY
             }
         }
-        const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers/test',body,config);
+        const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers/filtered',body,config);
         //console.log(res);
         dispatch({ type: LOAD_MARKERS, payload: {markerList: res.data}});
         return true;
