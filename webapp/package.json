@@ -10,7 +10,6 @@
     "leaflet.markercluster": "^1.4.1",
     "materialize-css": "^1.0.0",
     "moment": "^2.24.0",
-    "multi-select-react": "^0.1.8",
     "prop-types": "^15.7.2",
     "rc-time-picker": "^3.7.2",
     "react": "^16.10.2",
@@ -42,5 +41,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "multi-select-react": "^0.1.8"
+  }
 }
