@@ -80,7 +80,18 @@ class Filter extends Component {
         <Row style={{textAlign:'center', marginBottom: '0px', paddingLeft: '0px', paddingRight: '0px'}}>
           <Col s={3} style={{paddingTop: '10px', paddingBottom: '10px'}}>
             <Dropdown trigger={<Button style={{backgroundColor:'#aeb7b3'}} onCloseEnd={this.filterMarkers()}><i className="material-icons" style={{fontSize:"25px", color:"black"}}>filter_list</i></Button>}>
-              <a onClick={() => this.updateItemSelected('-1')}>
+              <a 
+              onClick={() => this.updateItemSelected('-1')}
+              style={{
+                borderStyle: 'solid',
+                borderTopWidth: '0px',
+                borderLeftWidth: '0px',
+                borderRightWidth: '0px',
+                borderBottomWidth: '1px',
+                paddingBottom: '13px',
+                borderColor: '#efcb68'
+              }}
+              >
                 {this.state.desactivado ? <i className="material-icons" style={{fontSize:"24px", color:"#160c28"}}>check</i> : null}
                 Ver todo
               </a>

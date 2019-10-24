@@ -125,7 +125,7 @@ class Home extends Component {
               lat: lat,
               lng: lng
             },
-            zoom: 12
+            zoom: 14
           });
         }
       },null,options);
