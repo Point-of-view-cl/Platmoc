@@ -84,7 +84,6 @@ class Filter extends Component {
                 {this.state.desactivado ? <i className="material-icons" style={{fontSize:"24px", color:"#160c28"}}>check</i> : null}
                 Ver todo
               </a>
-              <Divider/>
               {this.renderFilterItems()}
             </Dropdown>
           </Col>

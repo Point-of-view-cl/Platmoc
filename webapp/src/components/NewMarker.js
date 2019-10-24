@@ -73,7 +73,7 @@ class NewMarker extends Component {
     if(products.length == 0){
       return false;
     }
-    if(this.state.nombre.length == 0 || this.state.nombre.length > 30){
+    if(this.state.nombre.length == 0 || this.state.nombre.length > 60){
       return false;
     }
     return true;
