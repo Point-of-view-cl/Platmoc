@@ -48,6 +48,7 @@ p {
 }
 .leaflet-popup-content-wrapper{
     background: white;
+    max-width: 280px;
 }
 .row .input-field input:focus {
     border-bottom: 1px solid #efcb68 !important;
@@ -68,3 +69,18 @@ p {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
 }
+.leaflet-bar a{
+    background-color: #aeb7b3;
+    border-bottom-color: #160c28;
+}
+.leaflet-bar a:hover {
+    background-color: #aeb7b3;
+}
+.dropdown-content{
+    width: 230px !important;
+}
+.dropdown-content li>a{
+    color:#160c28;
+}
+
+

@@ -29,6 +29,7 @@ class Home extends Component {
         lng: -71.103
       }
     }
+    this.onClickCenterMap = this.onClickCenterMap.bind(this);
   }
 
   mapRef = React.createRef();
@@ -51,20 +52,20 @@ class Home extends Component {
           </p>
         );
         items.push(
-          <Marker 
+          <Marker
+            style={{color:'red'}}
             key={markerId} 
             position={[markerData.lat, markerData.lng]}
             icon={iconMarket}
             onClick={() => {
               if(markerData.marker_type==1){
-                this.props.unLoadMarkerDetail();
-                this.props.getMarketDetail({id: markerId});
+                this.props.unLoadMarkerDetail().then(() => this.props.getMarketDetail({id: markerId}));
               }
             }}
           >
             <Popup autoPan={false}>
               <p style={{fontSize:'18px'}}><b>{markerData.name}</b></p>
-              <p><b>Nivel de cola:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.queue_level : 'Cargando') : 'Estamos averiguando para usted ♥'}</p>
+              <p><b>Cantidad de Personas:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.queue_level : 'Cargando') : 'Estamos averiguando para usted ♥'}</p>
               <p><b>Puedes encontrar:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.products.join(', ') : 'Cargando') : 'Estamos averiguando para usted ♥'}</p>
               <p><b>Hora de cierre:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.until : 'Cargando') : markerData.until}</p>
               {markerData.marker_type == 1 ? editButton: <div></div>}
@@ -87,9 +88,10 @@ class Home extends Component {
     }
   }
 
-  componentDidMount(){
-    this.props.loadStaticMarkers();
-    this.props.loadMarkers();
+  async componentDidMount(){
+    await this.props.clearAllMarkers();
+    await this.props.loadStaticMarkers();
+    await this.props.loadMarkers();
     /*
     let bounds = this.mapRef.current.leafletElement.getBounds();
     let mapwidh = Math.abs(bounds._northEast.lat - bounds._southWest.lat); //ancho
@@ -200,6 +202,7 @@ class Home extends Component {
     const displayMap = this.props.globals.newMarketFromOpen ? 'none' : 'block' && this.props.globals.editMarketFromOpen ? 'none' : 'block';
     return (
       <div>
+        {/*
         <Card
           style={{
             display:displayMap,
@@ -220,13 +223,14 @@ class Home extends Component {
             <Col s={4}>
               <Button
                 onClick={ () => this.onClickCenterMap() }
-                style={{marginTop: "16px", backgroundColor:'#aeb7b3'}}
+                style={{backgroundColor:'#aeb7b3'}}
               >
-                <i class="material-icons" style={{fontSize:"25px", color:"black"}}>my_location</i>
+                <i className="material-icons" style={{fontSize:"25px", color:"black"}}>my_location</i>
               </Button >
             </Col>
           </Row>
         </Card>
+        */}
         {this.renderNewMarkerFrom()}
         {this.renderEditMarkerFrom()}
         <Map 
@@ -246,11 +250,9 @@ class Home extends Component {
           {this.renderMarker()}
           {this.renderNewMarketIcon()}
 
-          {/*
           <Control position="topleft">
-            <Filter updateCenderMap={this.updateCenderMap}/>
+            <Filter updateCenderMap={this.onClickCenterMap}/>
           </Control>
-          */}
 
           <Control position="bottomleft" >
             <ToolBar/>

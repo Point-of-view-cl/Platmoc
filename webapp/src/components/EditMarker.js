@@ -17,10 +17,10 @@ class EditMarker extends Component {
         time:now,
         format: 'h:mm a',
         selectCola: [
-            {value: false, label: "Nada", id: 1, level: 1},
-            {value: false, label: "Poco", id: 2, level: 2},
-            {value: false, label: "Algo", id: 3, level: 3},
-            {value: false, label: "Mucho", id: 4, level: 4},
+            {value: false, label: "Ninguna", id: 1, level: 1},
+            {value: false, label: "Pocas", id: 2, level: 2},
+            {value: false, label: "Algunas", id: 3, level: 3},
+            {value: false, label: "Muchas", id: 4, level: 4},
             {value: false, label: "No ir, está cerrado", id: 5, level: 5}
         ],
         selectProducto: [
@@ -28,8 +28,9 @@ class EditMarker extends Component {
             {value: false, label: "Alimentos", id: 2},
             {value: false, label: "Bebestibles", id: 3},
             {value: false, label: "Medicamentos", id: 4},
-            {value: false, label: "Otros", id: 5},
-            {value: false, label: "No ir, no hay nada", id: 6, level: 6}
+            {value: false, label: "Alimento de mascotas", id: 5},
+            {value: false, label: "Otros", id: 6},
+            {value: false, label: "No ir, no hay nada", id: 7}
         ],
         error: false,
         showAviso: false,
@@ -132,7 +133,7 @@ class EditMarker extends Component {
             <div style={{paddingBottom: '10px', paddingTop:'50px'}}><b>Gracias!, luego que revisemos tu aporte, lo compartiremos con todo Chile! </b></div>
             <Button  
               style={{backgroundColor: '#efcb68', color: '#000411'}}
-              onClick={ () => {this.props.setEditMarkerFromClose(); window.location.reload(false);}}
+              onClick={ () => {this.props.setEditMarkerFromClose();}}
             >
               Ya !
             </Button >
