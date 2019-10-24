@@ -34,7 +34,8 @@ class NewMarker extends Component {
       ],
       error: false,
       showAviso: false,
-      procesando: false
+      procesando: false,
+      errorMsg: ''
     }
   }
 
@@ -62,6 +63,9 @@ class NewMarker extends Component {
       }
     });
     if(queue_level == -1){
+      this.setState({
+        errorMsg: 'Tienes que ingresar toda la información porfa :)'
+      });
       return false;
     }
     let products = [];
@@ -71,9 +75,21 @@ class NewMarker extends Component {
       }
     });
     if(products.length == 0){
+      this.setState({
+        errorMsg: 'Tienes que ingresar toda la información porfa :)'
+      });
       return false;
     }
-    if(this.state.nombre.length == 0 || this.state.nombre.length > 60){
+    if(this.state.nombre.length < 3){
+      this.setState({
+        errorMsg: 'Tienes que ingresar toda la información porfa :)'
+      });
+      return false;
+    }
+    if(this.state.nombre.length > 50){
+      this.setState({
+        errorMsg: 'El nombre del lugar es muy grande :)'
+      });
       return false;
     }
     return true;
@@ -116,7 +132,7 @@ class NewMarker extends Component {
 
   renderError(){
     if(this.state.error){
-      return(<div style={{color:'red'}}>Tienes que ingresar toda la información porfa :)</div>);
+      return(<div style={{color:'red'}}>{this.state.errorMsg}</div>);
     }
   }
 
