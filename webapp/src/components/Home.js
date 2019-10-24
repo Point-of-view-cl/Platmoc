@@ -89,6 +89,7 @@ class Home extends Component {
   }
 
   async componentDidMount(){
+    //TODO: Ahora la carga de los puntos la gatilla el filtro, eso tiene que cambiar 
     //await this.props.clearAllMarkers();
     //await this.props.loadStaticMarkers();
     //await this.props.loadMarkers();
@@ -234,7 +235,7 @@ class Home extends Component {
         {this.renderNewMarkerFrom()}
         {this.renderEditMarkerFrom()}
         <Map 
-          maxZoom={19}
+          maxZoom={18}
           minZoom={5}
           ref={this.mapRef}
           style={{display: displayMap}}
