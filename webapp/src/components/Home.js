@@ -237,7 +237,7 @@ class Home extends Component {
           maxZoom={19}
           minZoom={5}
           ref={this.mapRef}
-          style={{display: displayMap, height: "100vh"}}
+          style={{display: displayMap}}
           center={[this.state.centerMap.lat,this.state.centerMap.lng]}
           zoom={this.state.zoom}
           onViewportChange={(data) => this.onChangeMapPosition(data)}
