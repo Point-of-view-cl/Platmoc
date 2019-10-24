@@ -17,21 +17,25 @@ class NewMarker extends Component {
       time:now,
       format: 'h:mm a',
       selectCola: [
-        {value: false, label: "Nada", id: 1, level: 1},
-        {value: false, label: "Poco", id: 2, level: 2},
-        {value: false, label: "Algo", id: 3, level: 3},
-        {value: false, label: "Mucho", id: 4, level: 4}
+        {value: false, label: "Ninguna", id: 1, level: 1},
+        {value: false, label: "Pocas", id: 2, level: 2},
+        {value: false, label: "Algunas", id: 3, level: 3},
+        {value: false, label: "Muchas", id: 4, level: 4},
+        {value: false, label: "No ir, esta cerrado", id: 5, level: 5}
       ],
       selectProducto: [
         {value: false, label: "Abarrotes", id: 1},
         {value: false, label: "Alimentos", id: 2},
         {value: false, label: "Bebestibles", id: 3},
         {value: false, label: "Medicamentos", id: 4},
-        {value: false, label: "Otros", id: 5},
+        {value: false, label: "Alimento de mascotas", id: 5},
+        {value: false, label: "Otros", id: 6},
+        {value: false, label: "No ir, no hay nada", id: 7}
       ],
       error: false,
       showAviso: false,
-      procesando: false
+      procesando: false,
+      errorMsg: ''
     }
   }
 
@@ -59,6 +63,9 @@ class NewMarker extends Component {
       }
     });
     if(queue_level == -1){
+      this.setState({
+        errorMsg: 'Tienes que ingresar toda la información porfa :)'
+      });
       return false;
     }
     let products = [];
@@ -68,9 +75,21 @@ class NewMarker extends Component {
       }
     });
     if(products.length == 0){
+      this.setState({
+        errorMsg: 'Tienes que ingresar toda la información porfa :)'
+      });
       return false;
     }
-    if(this.state.nombre.length == 0 || this.state.nombre.length > 30){
+    if(this.state.nombre.length < 3){
+      this.setState({
+        errorMsg: 'Tienes que ingresar toda la información porfa :)'
+      });
+      return false;
+    }
+    if(this.state.nombre.length > 50){
+      this.setState({
+        errorMsg: 'El nombre del lugar es muy grande :)'
+      });
       return false;
     }
     return true;
@@ -113,7 +132,7 @@ class NewMarker extends Component {
 
   renderError(){
     if(this.state.error){
-      return(<div style={{color:'red'}}>Tienes que ingresar toda la información porfa :)</div>);
+      return(<div style={{color:'red'}}>{this.state.errorMsg}</div>);
     }
   }
 
@@ -125,7 +144,7 @@ class NewMarker extends Component {
             <div style={{paddingBottom: '10px', paddingTop:'50px'}}><b>Gracias!, luego que revisemos tu aporte, lo compartiremos con todo Chile! </b></div>
             <Button  
               style={{backgroundColor: '#efcb68', color: '#000411'}}
-              onClick={ () => {this.props.setNewMarkerFromClose(); this.props.setNewMarkerRefPointOff(); window.location.reload(false);}}
+              onClick={() => { this.props.setNewMarkerRefPointOff().then(() => this.props.setNewMarkerFromClose())}}
             >
               Ya !
             </Button >
@@ -154,7 +173,7 @@ class NewMarker extends Component {
           <Col s={12}  style={{textAlign:'center'}}>
             <Button  
               style={{backgroundColor: '#aeb7b3', color: '#000411'}}
-              onClick={ () => {this.props.setNewMarkerFromClose(); this.props.setNewMarkerRefPointOff();}}
+              onClick={() => { this.props.setNewMarkerRefPointOff().then(() => this.props.setNewMarkerFromClose())}}
             >
               Cancelar
             </Button >

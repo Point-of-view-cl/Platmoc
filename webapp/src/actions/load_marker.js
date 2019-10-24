@@ -4,7 +4,8 @@ import {
     LOAD_STATIC_MARKERS,
     LOAD_MARKERS,
     LOAD_MARKER_DETAIL,
-    UNLOAD_MARKER_DETAIL
+    UNLOAD_MARKER_DETAIL,
+    CLEAR_ALL_MARKERS,
 } from './types';
 
 require('dotenv').config();
@@ -63,13 +64,15 @@ export const getMarketDetail = (data) => async (dispatch) => {
         });
         let nivelCola = '';
         if(res.data[0].queue_level == 1){
-            nivelCola = 'Nada';
+            nivelCola = 'Ninguna';
         }else if(res.data[0].queue_level == 2){
-            nivelCola = 'Poco';
+            nivelCola = 'Pocas';
         }else if(res.data[0].queue_level == 3){
-            nivelCola = 'Algo';
+            nivelCola = 'Algunas';
         }else if(res.data[0].queue_level == 4){
-            nivelCola = 'Mucho';
+            nivelCola = 'Muchas';
+        }else if(res.data[0].queue_level == 5){
+            nivelCola = 'No ir, está cerrado';
         }else{
             nivelCola = '';
         }
@@ -95,9 +98,10 @@ export const getMarketDetail = (data) => async (dispatch) => {
     }
 };
 
-export const unLoadMarkerDetail = () => dispatch => {
+export const unLoadMarkerDetail = () => dispatch => new Promise((resolve, reject) => {
     dispatch({ type: UNLOAD_MARKER_DETAIL, payload:null});
-};
+    resolve();
+});
 
 export const newMarker = (data) => async (dispatch) => {
     try {
@@ -124,3 +128,8 @@ export const newMarker = (data) => async (dispatch) => {
         return false;
     }
 };
+
+export const clearAllMarkers = () => dispatch => new Promise((resolve, reject) => {
+    dispatch({ type: CLEAR_ALL_MARKERS, payload:null});
+    resolve();
+});

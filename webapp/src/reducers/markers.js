@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 
-import { LOAD_STATIC_MARKERS, LOAD_MARKERS } from '../actions/types';
+import { LOAD_STATIC_MARKERS, LOAD_MARKERS, CLEAR_ALL_MARKERS } from '../actions/types';
 
 var defaultValues = {
   markers: {
@@ -41,19 +41,22 @@ export default function(state = defaultValues , action) {
       });
       return update(state, {markers: {$merge: statics}} );
     case LOAD_MARKERS:
-      let test = {};
+      let dinamycMarkers = {};
       //console.log(action.payload.markerList);
       action.payload.markerList.forEach(element => {
-        test[element.marker_id] = {
+        dinamycMarkers[element.marker_id] = {
           lat: element.lat,
           lng: element.long,
           name: element.name,
           until: 'none',
-          marker_type: element.marker_type,
+          marker_type: element.marker_type, 
+          enable: element.enable
         }
       });
-      //console.log(test);
-      return update(state, {markers: {$merge: test}} );
+      //console.log(dinamycMarkers);
+      return update(state, {markers: {$merge: dinamycMarkers}} );
+    case CLEAR_ALL_MARKERS:
+      return update(state, {markers: {$set: {}}} );
     default:
       return state;
   }

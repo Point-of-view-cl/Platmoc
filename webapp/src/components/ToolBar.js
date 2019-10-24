@@ -46,7 +46,7 @@ renderToolBar(){
     return (
       <div>
         <Row style={{textAlign:'center', marginBottom: '10px'}}>
-          <Col s={12} style={{paddingTop: '10px', paddingBottom: '10px'}}>
+          <Col s={12} style={{paddingTop: '12px', paddingBottom: '12px'}}>
             {this.renderToolBar()}
           </Col>
         </Row>

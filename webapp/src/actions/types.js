@@ -5,3 +5,4 @@ export const LOAD_STATIC_MARKERS = 'load_static_markers';
 export const LOAD_MARKER_DETAIL = 'load_marker_detail';
 export const SET_MARKER_EDIT_DATA = 'set_marker_edit_data';
 export const UNLOAD_MARKER_DETAIL = 'unload_marker_detail';
+export const CLEAR_ALL_MARKERS = 'clear_all_markers';
