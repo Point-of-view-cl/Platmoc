@@ -237,7 +237,7 @@ class Home extends Component {
           maxZoom={19}
           minZoom={5}
           ref={this.mapRef}
-          style={{display: displayMap}}
+          style={{display: displayMap, height: "100vh"}}
           center={[this.state.centerMap.lat,this.state.centerMap.lng]}
           zoom={this.state.zoom}
           onViewportChange={(data) => this.onChangeMapPosition(data)}
@@ -247,7 +247,8 @@ class Home extends Component {
         >
           <TileLayer
             attribution='&amp;copy OpenStreetMap \m/ <font color="#160c28"> Con ♥ por Sudo B00yz</font>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            //url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png"
           />
           {this.renderMarker()}
           {this.renderNewMarketIcon()}
