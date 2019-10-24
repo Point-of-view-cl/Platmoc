@@ -116,6 +116,10 @@ class Home extends Component {
         let lat = poss.coords.latitude;
         let lng = poss.coords.longitude;
         if(typeof(lat) !== 'undefined' && typeof(lng) !== 'undefined'){
+          let zoomUax = this.state.zoom; 
+          if(zoomUax == 12){
+            zoomUax = 11;
+          }
           this.setState({
             newMarkerIcon: {
               lat: lat,
@@ -125,7 +129,7 @@ class Home extends Component {
               lat: lat,
               lng: lng
             },
-            zoom: 12
+            zoom: zoomUax
           });
         }
       },null,options);
@@ -242,6 +246,7 @@ class Home extends Component {
           zoom={this.state.zoom}
           onViewportChange={(data) => this.onChangeMapPosition(data)}
           zoomControl={false}
+          animate={false}
         >
           <TileLayer
             attribution='&amp;copy OpenStreetMap \m/ <font color="#160c28"> Con ♥ por Sudo B00yz</font>'
