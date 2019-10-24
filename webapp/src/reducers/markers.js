@@ -50,6 +50,7 @@ export default function(state = defaultValues , action) {
           name: element.name,
           until: 'none',
           marker_type: element.marker_type, 
+          enable: element.enable
         }
       });
       //console.log(dinamycMarkers);

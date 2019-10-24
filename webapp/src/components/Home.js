@@ -89,9 +89,9 @@ class Home extends Component {
   }
 
   async componentDidMount(){
-    await this.props.clearAllMarkers();
-    await this.props.loadStaticMarkers();
-    await this.props.loadMarkers();
+    //await this.props.clearAllMarkers();
+    //await this.props.loadStaticMarkers();
+    //await this.props.loadMarkers();
     /*
     let bounds = this.mapRef.current.leafletElement.getBounds();
     let mapwidh = Math.abs(bounds._northEast.lat - bounds._southWest.lat); //ancho

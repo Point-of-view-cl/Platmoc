@@ -64,13 +64,13 @@ class Filter extends Component {
         activeFilver = item.label;
       }
     });
-    await this.props.clearAllMarkers().then();
-    await this.props.loadStaticMarkers();
+    await this.props.clearAllMarkers();
     if(activeFilver != 'none'){
       await this.props.productFilter({productFilter:activeFilver});
     }else{
       await this.props.loadMarkers();
     }
+    await this.props.loadStaticMarkers();
     //aqui consultamos por los puntos filtrados
   }
 
