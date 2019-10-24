@@ -13,6 +13,9 @@ class Filter extends Component {
         {value: false, label: "Alimentos", id: 2},
         {value: false, label: "Bebestibles", id: 3},
         {value: false, label: "Medicamentos", id: 4},
+        {value: false, label: "Alimento de mascotas", id: 5},
+        {value: false, label: "Otros", id: 6},
+        {value: false, label: "No ir, no hay nada", id: 7}
       ],
       desactivado: true
     }
@@ -47,7 +50,7 @@ class Filter extends Component {
           onClick={() => this.updateItemSelected(item.id)}
         >
           {item.value ? <i className="material-icons" style={{fontSize:"24px", color:"#160c28"}}>check</i> : null}
-          Solo {item.label}
+          {item.label}
         </a>
       );
     }, this);
@@ -55,8 +58,19 @@ class Filter extends Component {
   }
 
   async filterMarkers(){
+    let activeFilver = 'none';
+    this.state.itemSelected.forEach((item) => {
+      if(item.value){
+        activeFilver = item.label;
+      }
+    });
     await this.props.clearAllMarkers().then();
     await this.props.loadStaticMarkers();
+    if(activeFilver != 'none'){
+      await this.props.productFilter({productFilter:activeFilver});
+    }else{
+      await this.props.loadMarkers();
+    }
     //aqui consultamos por los puntos filtrados
   }
 
