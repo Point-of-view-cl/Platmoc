@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const rateLimit = require("express-rate-limit");
 var sslRedirect = require('heroku-ssl-redirect');
 
 //TODO: Agregar HTTPS
@@ -10,8 +11,15 @@ var sslRedirect = require('heroku-ssl-redirect');
 
 const app = express();
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+
 //Use SSL
 app.use(sslRedirect());
+
+app.use(limiter);
 
 //Control de acceso
 app.use((req, res, next) => {
