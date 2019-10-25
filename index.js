@@ -37,3 +37,5 @@ app.get('*', (req, res) => {
 app.listen(process.env.PORT, () => {
     console.log('Server ON, port:', process.env.PORT);
 });
+
+require('./routes/markersRoute')(app);
