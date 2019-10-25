@@ -23,7 +23,6 @@ app.use(limiter);
 
 //Control de acceso
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', process.env.ORIGIN || '*');
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
   res.header(
     'Access-Control-Allow-Headers',
