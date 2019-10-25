@@ -11,15 +11,22 @@ var sslRedirect = require('heroku-ssl-redirect');
 
 const app = express();
 
-const limiter = rateLimit({
+const limiterGeneral = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
+  max: 150 // limit each IP to 100 requests per windowMs
+});
+const limiterUpdate = rateLimit({
+  windowMs: 1 * 60 * 1000, // 15 minutes
+  max: 2 // limit each IP to 100 requests per windowMs
 });
 
 //Use SSL
 app.use(sslRedirect());
 
-app.use(limiter);
+//Limitadores
+app.use(limiterGeneral);
+app.use('/markers/update',limiterUpdate);
+
 
 //Control de acceso
 app.use((req, res, next) => {
