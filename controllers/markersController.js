@@ -1,6 +1,7 @@
 var request = require('request');
 
 async function markersList(req, res) {
+    console.log('aqui');
     try{ 
         let headers = { 
             'Content-Type': 'application/json',
