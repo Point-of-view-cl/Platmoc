@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 
 import {
     LOAD_STATIC_MARKERS,
@@ -61,7 +62,13 @@ export const getMarketDetail = (data) => async (dispatch) => {
             }
         }
         const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers/info',body,config);
-        //console.log(res.data[0].products);
+        let lastChange;
+        if(res.data[0].updated_at){
+            lastChange = res.data[0].updated_at;
+        }else{
+            lastChange = res.data[0].created_at;
+        }
+        lastChange = moment(lastChange).format('DD-MM HH:mm A');
         let products = [];
         res.data[0].products.forEach(element => {
             products.push(element.name);
@@ -91,7 +98,8 @@ export const getMarketDetail = (data) => async (dispatch) => {
             markerDetail: {
                 until: untilAux,
                 queue_level: nivelCola,
-                products:products
+                products:products,
+                lastChange: lastChange
             },
         }
         dispatch({ type: LOAD_MARKER_DETAIL, payload: markerInfo});

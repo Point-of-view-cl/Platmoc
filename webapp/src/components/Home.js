@@ -65,11 +65,12 @@ class Home extends Component {
           >
 
             <Popup autoPan={false}>
-              <p style={{fontSize:'18px'}}><b>{markerData.name}</b></p>
+              <p style={{fontSize:'18px', borderBottomStyle: 'solid', borderBottomWidth: '2px'}}><b>{markerData.name}</b></p>
               <p><b>Cantidad de Personas:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.queue_level : 'Cargando') : 'Estamos averiguando para usted ♥'}</p>
               <p><b>Puedes encontrar:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.products.join(', ') : 'Cargando') : 'Estamos averiguando para usted ♥'}</p>
               <p><b>Hora de cierre:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.until : 'Cargando') : markerData.until}</p>
               {markerData.marker_type == 1 ? editButton: <div></div>}
+              <p style={{fontSize: '11px', borderTopStyle: 'solid', borderTopWidth: '1px'}}>Ultima vez que la información fue actualizada&nbsp;&nbsp; {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.lastChange : 'Cargando') : <div></div>}</p>
             </Popup>
 
           </Marker>
