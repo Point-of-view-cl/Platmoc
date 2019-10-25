@@ -15,28 +15,22 @@ const limiterGeneral = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 150 // limit each IP to 100 requests per windowMs
 });
-const limiterUpdate = rateLimit({
-  windowMs: 1 * 60 * 1000, // 15 minutes
-  max: 2 // limit each IP to 100 requests per windowMs
-});
 
 //Use SSL
 app.use(sslRedirect());
 
 //Limitadores
 app.use(limiterGeneral);
-app.use('/markers/update',limiterUpdate);
-
 
 //Control de acceso
+/*
 app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  );
+  res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
+*/
 
 //Formato de consultas
 app.use(bodyParser.urlencoded({ extended: false }));
