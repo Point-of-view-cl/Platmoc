@@ -1,4 +1,5 @@
 const markersController = require('../controllers/markersController');
+const authJwt = require('../middlewares/authJwt');
 
 module.exports = app => {
     app.post(
