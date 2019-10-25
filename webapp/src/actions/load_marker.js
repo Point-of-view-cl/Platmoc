@@ -10,7 +10,9 @@ import {
 
 require('dotenv').config();
 
+//TODO: ESTATICOS DESACTIVADOS
 export const loadStaticMarkers = () => async (dispatch) => {
+    /*
     try {
         let body = JSON.stringify({ latMin: -100, latMax: 100, lngMin: -100, lngMax: 100 })
         let config = {
@@ -26,6 +28,8 @@ export const loadStaticMarkers = () => async (dispatch) => {
         console.log(err);
         return false;
     }
+    */
+   return true;
 };
 
 export const loadMarkers = () => async (dispatch) => {
