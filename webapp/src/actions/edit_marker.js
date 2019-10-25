@@ -6,8 +6,6 @@ import {
   SET_MARKER_EDIT_DATA,
 } from './types';
 
-require('dotenv').config();
-
 export const setEditMarkerFromOpen = (data) => dispatch => {
   let markerDetail = {
     until: data.until,
@@ -35,12 +33,11 @@ export const editMarker = (data) => async (dispatch) => {
       });
       let config = {
           headers: { 
-              'Content-Type': 'application/json',
-              'X-Api-Key': process.env.REACT_APP_API_KEY
+              'Content-Type': 'application/json'
           }
       };
       console.log(body);
-      const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers/update',body,config);
+      const res = await axios.post('/markers/update',body,config);
       return true;
   } catch (err) {
       console.log(err);

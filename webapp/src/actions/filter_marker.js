@@ -4,8 +4,6 @@ import {
     LOAD_MARKERS
 } from './types';
 
-require('dotenv').config();
-
 export const productFilter = (data) => async (dispatch) => {
     console.log(data);
     try {
@@ -13,10 +11,9 @@ export const productFilter = (data) => async (dispatch) => {
         let config = {
             headers: { 
                 'Content-Type': 'application/json',
-                'X-Api-Key': process.env.REACT_APP_API_KEY
             }
         }
-        const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers/filtered',body,config);
+        const res = await axios.post('/markers/filtered',body,config);
         //console.log(res);
         dispatch({ type: LOAD_MARKERS, payload: {markerList: res.data}});
         return true;

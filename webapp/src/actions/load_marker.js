@@ -9,8 +9,6 @@ import {
     CLEAR_ALL_MARKERS,
 } from './types';
 
-require('dotenv').config();
-
 //TODO: ESTATICOS DESACTIVADOS
 export const loadStaticMarkers = () => async (dispatch) => {
     /*
@@ -38,11 +36,10 @@ export const loadMarkers = () => async (dispatch) => {
         let body = JSON.stringify({ latMin: -100, latMax: 100, lngMin: -100, lngMax: 100 })
         let config = {
             headers: { 
-                'Content-Type': 'application/json',
-                'X-Api-Key': process.env.REACT_APP_API_KEY
+                'Content-Type': 'application/json'
             }
         }
-        const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers/list',body,config);
+        const res = await axios.post('/markers/list',body,config);
         dispatch({ type: LOAD_MARKERS, payload: {markerList: res.data}});
         return true;
     } catch (err) {
@@ -57,11 +54,10 @@ export const getMarketDetail = (data) => async (dispatch) => {
         let body = JSON.stringify({ marker_id: data.id })
         let config = {
             headers: { 
-                'Content-Type': 'application/json',
-                'X-Api-Key': process.env.REACT_APP_API_KEY
+                'Content-Type': 'application/json'
             }
         }
-        const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers/info',body,config);
+        const res = await axios.post('/markers/info',body,config);
         let lastChange;
         if(res.data[0].updated_at){
             lastChange = res.data[0].updated_at;
@@ -129,12 +125,11 @@ export const newMarker = (data) => async (dispatch) => {
         })
         let config = {
             headers: { 
-                'Content-Type': 'application/json',
-                'X-Api-Key': process.env.REACT_APP_API_KEY
+                'Content-Type': 'application/json'
             }
         }
         console.log(body);
-        const res = await axios.post(process.env.REACT_APP_BASE_URL+'/markers',body,config);
+        const res = await axios.post('/markers',body,config);
         return true;
     } catch (err) {
         console.log(err);
