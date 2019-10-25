@@ -11,7 +11,7 @@ import ToolBar from './ToolBar';
 import Filter from './Filter';
 import EditMarker from './EditMarker';
 
-import {iconMarket, newMarker} from '../helpers/iconList';
+import {iconMarket, newMarker, iconMarketMini} from '../helpers/iconList';
 import Row from 'react-materialize/lib/Row';
 
 class Home extends Component {
@@ -56,20 +56,23 @@ class Home extends Component {
             style={{color:'red'}}
             key={markerId} 
             position={[markerData.lat, markerData.lng]}
-            icon={iconMarket}
+            icon={this.state.zoom >= 18 ? iconMarketMini : iconMarket}
             onClick={() => {
               if(markerData.marker_type==1){
                 this.props.unLoadMarkerDetail().then(() => this.props.getMarketDetail({id: markerId}));
               }
             }}
           >
+
             <Popup autoPan={false}>
-              <p style={{fontSize:'18px'}}><b>{markerData.name}</b></p>
+              <p style={{fontSize:'18px', borderBottomStyle: 'solid', borderBottomWidth: '2px'}}><b>{markerData.name}</b></p>
               <p><b>Cantidad de Personas:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.queue_level : 'Cargando') : 'Estamos averiguando para usted ♥'}</p>
               <p><b>Puedes encontrar:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.products.join(', ') : 'Cargando') : 'Estamos averiguando para usted ♥'}</p>
               <p><b>Hora de cierre:</b> {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.until : 'Cargando') : markerData.until}</p>
               {markerData.marker_type == 1 ? editButton: <div></div>}
+              <p style={{fontSize: '11px', borderTopStyle: 'solid', borderTopWidth: '1px'}}>Ultima vez que la información fue actualizada&nbsp;&nbsp; {markerData.marker_type == 1 ? (this.props.markerDetail.ready ? this.props.markerDetail.markerDetail.lastChange : 'Cargando') : <div></div>}</p>
             </Popup>
+
           </Marker>
         );
       },this);
@@ -77,7 +80,6 @@ class Home extends Component {
     return(
       <MarkerClusterGroup 
         disableClusteringAtZoom={18} 
-        spiderfyDistanceMultiplier={5}
         spiderfyOnMaxZoom={false} 
       >
       {items}
@@ -211,35 +213,6 @@ class Home extends Component {
     const displayMap = this.props.globals.newMarketFromOpen ? 'none' : 'block' && this.props.globals.editMarketFromOpen ? 'none' : 'block';
     return (
       <div>
-        {/*
-        <Card
-          style={{
-            display:displayMap,
-            position:'absolute',
-            width:'100%',
-            zIndex:'100000',
-            borderRadius: '40px',
-            fontSize: '12px',
-            textAlign:'center'
-          }}
-          className="blue-grey darken-1"
-          textClassName="white-text"
-        >
-          <Row style={{marginBottom:'0px'}}>
-            <Col s={8}>
-              Luego de 24 Horas seguimos trabajando! Cualquier Feedback mandanos un mensaje por <b><a href="https://www.instagram.com/abastecete.chile/">Instagram</a></b>.
-            </Col>
-            <Col s={4}>
-              <Button
-                onClick={ () => this.onClickCenterMap() }
-                style={{backgroundColor:'#aeb7b3'}}
-              >
-                <i className="material-icons" style={{fontSize:"25px", color:"black"}}>my_location</i>
-              </Button >
-            </Col>
-          </Row>
-        </Card>
-        */}
         {this.renderNewMarkerFrom()}
         {this.renderEditMarkerFrom()}
         <Map 
