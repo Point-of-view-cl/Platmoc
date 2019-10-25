@@ -25,7 +25,7 @@ const iconMarketMini = new L.Icon({
 const newMarker = new L.Icon({
     iconUrl: require('../img/newMarker.svg'),
     iconRetinaUrl: require('../img/newMarker.svg'),
-    iconAnchor: [30, 65],
+    iconAnchor: [30, 58],
     popupAnchor: [0, 0],
     shadowUrl: null,
     shadowSize: null,
