@@ -68,7 +68,8 @@ export const getMarketDetail = (data) => async (dispatch) => {
         }else{
             lastChange = res.data[0].created_at;
         }
-        lastChange = moment(lastChange).format('DD-MM HH:mm A');
+        //TODO: Aplicar TimeZone correctamente
+        lastChange = moment(lastChange).subtract({'hours': 4}).format('DD-MM HH:mm A');
         let products = [];
         res.data[0].products.forEach(element => {
             products.push(element.name);
